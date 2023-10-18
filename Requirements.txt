@@ -1,0 +1,17 @@
+Bowling Scoring System
+
+Requirements
+
+Must haves:
+- input number of pins for each roll of the bowling ball
+- be able to handle 10 frames, each with 1-2 possible roll, for 1 player.
+- calculate correct score with regards to strike and spare
+	- special case: 10th frame
+- Retrieve current scoring
+- ability to run simulations for validity etc.
+
+Nice to haves:
+- possibility for multiple players
+- possibility to edit input mistakes.
+- UI
+

@@ -1,0 +1,25 @@
+Bowling scoring system
+
+Implementation
+
+- class/interface: 
+	- Frame
+	(- Frame10 special/inherit/impl. interface/)
+	- Game (main class)
+	- TestClass
+- Fields in Frame: 
+	- frameNo
+	- roll1
+	- roll2
+	- finalFrameScore
+- Fields in Game:
+	- playerName
+	- scoringArray
+	- currentScore
+- array: with 10 frames
+
+
+Methods:
+- setScore()
+- getCurrentScore()
+- getCurrentFrame()

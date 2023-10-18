@@ -1,0 +1,14 @@
+D:\Dokumenter\DanskeCommodities\BowlingScoring\BowlingTracker\bin\Debug\net7.0\BowlingTracker.exe
+D:\Dokumenter\DanskeCommodities\BowlingScoring\BowlingTracker\bin\Debug\net7.0\BowlingTracker.deps.json
+D:\Dokumenter\DanskeCommodities\BowlingScoring\BowlingTracker\bin\Debug\net7.0\BowlingTracker.runtimeconfig.json
+D:\Dokumenter\DanskeCommodities\BowlingScoring\BowlingTracker\bin\Debug\net7.0\BowlingTracker.dll
+D:\Dokumenter\DanskeCommodities\BowlingScoring\BowlingTracker\bin\Debug\net7.0\BowlingTracker.pdb
+D:\Dokumenter\DanskeCommodities\BowlingScoring\BowlingTracker\obj\Debug\net7.0\BowlingTracker.GeneratedMSBuildEditorConfig.editorconfig
+D:\Dokumenter\DanskeCommodities\BowlingScoring\BowlingTracker\obj\Debug\net7.0\BowlingTracker.AssemblyInfoInputs.cache
+D:\Dokumenter\DanskeCommodities\BowlingScoring\BowlingTracker\obj\Debug\net7.0\BowlingTracker.AssemblyInfo.cs
+D:\Dokumenter\DanskeCommodities\BowlingScoring\BowlingTracker\obj\Debug\net7.0\BowlingTracker.csproj.CoreCompileInputs.cache
+D:\Dokumenter\DanskeCommodities\BowlingScoring\BowlingTracker\obj\Debug\net7.0\BowlingTracker.dll
+D:\Dokumenter\DanskeCommodities\BowlingScoring\BowlingTracker\obj\Debug\net7.0\refint\BowlingTracker.dll
+D:\Dokumenter\DanskeCommodities\BowlingScoring\BowlingTracker\obj\Debug\net7.0\BowlingTracker.pdb
+D:\Dokumenter\DanskeCommodities\BowlingScoring\BowlingTracker\obj\Debug\net7.0\BowlingTracker.genruntimeconfig.cache
+D:\Dokumenter\DanskeCommodities\BowlingScoring\BowlingTracker\obj\Debug\net7.0\ref\BowlingTracker.dll
