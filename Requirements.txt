@@ -15,3 +15,9 @@ Nice to haves:
 - possibility to edit input mistakes.
 - UI
 
+Ideas:
+- Strategy patterns: Scoring
+- Possibility to create shorter/longer game
+
+How to run:
+dotnet run Run.cs

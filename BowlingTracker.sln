@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowlingTracker", "BowlingTracker\BowlingTracker.csproj", "{0544403E-41E8-4AE0-A25C-520B7C56ED5C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{12268486-D4DA-4982-93E5-E4DC202229EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,17 @@ Global
 		{0544403E-41E8-4AE0-A25C-520B7C56ED5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0544403E-41E8-4AE0-A25C-520B7C56ED5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0544403E-41E8-4AE0-A25C-520B7C56ED5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{244EB6D7-6CC6-43AA-BB5B-134C72680899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{244EB6D7-6CC6-43AA-BB5B-134C72680899}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{244EB6D7-6CC6-43AA-BB5B-134C72680899}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{244EB6D7-6CC6-43AA-BB5B-134C72680899}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A36028BD-7FF0-4AC4-BFD3-092674AD7C1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A36028BD-7FF0-4AC4-BFD3-092674AD7C1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A36028BD-7FF0-4AC4-BFD3-092674AD7C1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A36028BD-7FF0-4AC4-BFD3-092674AD7C1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12268486-D4DA-4982-93E5-E4DC202229EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12268486-D4DA-4982-93E5-E4DC202229EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12268486-D4DA-4982-93E5-E4DC202229EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12268486-D4DA-4982-93E5-E4DC202229EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
