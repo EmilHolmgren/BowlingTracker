@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0AhGAloV+p7hDSWjhsEcYLaAQgVuh5nr5DoRXpGs5FotGaqjYz6F8GavTxIRJwU+7uxN9OWbhYNPN8E/urxvZQ==",
+  "dgSpecHash": "upZwOJznGW8QnD1V3houAL/7cNwPBzyOb3oCMVz21fDej9AtRH92/h3NLtZnhFBy5hiV9IfuEFC70Dfqe3JGtg==",
   "success": true,
-  "projectFilePath": "D:\\Dokumenter\\DanskeCommodities\\BowlingScoring\\Tests\\Tests.csproj",
+  "projectFilePath": "d:\\Dokumenter\\DanskeCommodities\\BowlingScoring\\Tests\\Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\super\\.nuget\\packages\\coverlet.collector\\3.2.0\\coverlet.collector.3.2.0.nupkg.sha512",
     "C:\\Users\\super\\.nuget\\packages\\microsoft.codecoverage\\17.7.1\\microsoft.codecoverage.17.7.1.nupkg.sha512",

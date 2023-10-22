@@ -40,7 +40,8 @@ namespace BowlingTracker
         public void SetNextRoll(int pinsKnocked)
         {
             //Check for correct input
-            if (pinsKnocked < 0 || 10 < pinsKnocked) {
+            if (pinsKnocked < 0 || 10 < pinsKnocked) 
+            {
                 throw new ArgumentException("You can only knock down 0-10 pins.");
             }
 
@@ -53,16 +54,16 @@ namespace BowlingTracker
             {
                 if (currentFrame.IsLastFrame())
                 {
-                    currentRollNum =2;
-                    bool isStrike = currentFrame.GetSpecial()=="strike";
+                    currentRollNum = 2;
+                    bool isStrike = currentFrame.GetSpecial() == "strike";
                     carryStrike += isStrike ? 1 : 0;
                 }
                 else 
                 {
-                    bool isStrike = currentFrame.GetSpecial()=="strike";
+                    bool isStrike = currentFrame.GetSpecial() == "strike";
                     carryStrike += isStrike ? 1 : 0;
                     currentRollNum = isStrike ? 1 : 2;
-                    currentFrameNum += currentRollNum==2 ? 0 : 1;
+                    currentFrameNum += currentRollNum == 2 ? 0 : 1;
                     currentFrame = frames[currentFrameNum-1];
                 }
             }
@@ -146,8 +147,11 @@ namespace BowlingTracker
                 {
                     if (carryStrike > 0) 
                     {
-                        UpdateFrameScore(currentFrameNum-1);
-                        carryStrike--;
+                        if (frames[currentFrameNum-2].GetSpecial() == "strike")
+                        {
+                            UpdateFrameScore(currentFrameNum-1);
+                            carryStrike--;
+                        }
                     }
                     if (special == "no") {
                         UpdateFrameScore(currentFrameNum);

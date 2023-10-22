@@ -7,7 +7,8 @@ namespace BowlingTracker
 {
     internal class Run
     {
-        static void Main(string[] args) {
+        static void Main(string[] args) 
+        {
             //Create a game
             Game game = new Game();
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -24,7 +25,7 @@ namespace BowlingTracker
                 Console.ForegroundColor = ConsoleColor.Green;    
                 Console.WriteLine("Current score: " + game.GetLatestScore());
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("How many pins was knocked down:");
+                Console.WriteLine("How many pins were knocked down:");
                 Int32.TryParse(Console.ReadLine(), out int roll);
                 game.SetNextRoll(roll);
                 Console.ForegroundColor = ConsoleColor.Blue;

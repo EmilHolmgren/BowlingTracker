@@ -15,6 +15,7 @@ namespace BowlingTracker
 
         public Frame(bool lastFrame)
         {
+            //Why -1
             roll1 = -1;
             roll2 = -1;
             roll3 = -1;
@@ -37,17 +38,20 @@ namespace BowlingTracker
         {
             switch(rollNo)
             {
-                case 1: roll1 = rollValue;
+                case 1: 
+                    roll1 = rollValue;
                     specialFrame = rollValue == 10 ? "strike" : "no";
                     break;
-                case 2: roll2 = rollValue;
+                case 2: 
+                    roll2 = rollValue;
                     specialFrame = (rollValue + GetRoll(1))==10 ? "spare" : "no"; 
                     if (isLastFrame)
                     {
                         specialFrame = (rollValue + GetRoll(1)) >= 10 ? "special" : "no";
                     }                    
                     break;
-                case 3: roll3 = rollValue;
+                case 3: 
+                    roll3 = rollValue;
                     break;
                 default: throw new ArgumentException("Input needs to be between 1-3.");
             }
