@@ -7,12 +7,10 @@ namespace BowlingTracker
 {
     public class Frame
     {
-        private readonly bool isLastFrame;
         private int roll1;
         private int roll2;
         private int roll3;
-        // private  int frameScore;
-
+        private readonly bool isLastFrame;
         private string specialFrame;
 
         public Frame(bool lastFrame)
@@ -21,19 +19,8 @@ namespace BowlingTracker
             roll2 = -1;
             roll3 = -1;
             isLastFrame = lastFrame;
-            // frameScore = 0;
             specialFrame = "no";
         }
-
-        // public int GetFrameScore()
-        // {
-        //     return frameScore;
-        // }
-
-        // public void SetFrameScore(int i)
-        // {
-        //     frameScore = i;
-        // }
 
         public int GetRoll(int rollNumber)
         {
@@ -42,7 +29,7 @@ namespace BowlingTracker
                 1 => roll1,
                 2 => roll2,
                 3 => roll3,
-                _ => throw new Exception(),
+                _ => throw new ArgumentException("Input needs to be between 1-3."),
             };
         }
 
@@ -62,7 +49,7 @@ namespace BowlingTracker
                     break;
                 case 3: roll3 = rollValue;
                     break;
-                default: throw new Exception();
+                default: throw new ArgumentException("Input needs to be between 1-3.");
             }
             
         }

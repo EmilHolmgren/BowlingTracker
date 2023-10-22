@@ -5,7 +5,6 @@ namespace BowlingTracker
 {
     public class Game
     {
-        // private int currentScore;
         private int[] scoreCumulative;
         private Frame currentFrame;
         private int currentFrameNum;
@@ -13,8 +12,7 @@ namespace BowlingTracker
         private Frame[] frames;
         private int carryStrike;
         private bool carrySpare;
-        // private int latestScore;
-
+ 
         public Game()
         {
             SetupGame();
@@ -22,7 +20,6 @@ namespace BowlingTracker
         
         private void SetupGame()
         {
-            // latestScore = 0;
             currentRollNum = 1;
             scoreCumulative = new int[10];
             carryStrike = 0;
@@ -42,14 +39,16 @@ namespace BowlingTracker
 
         public void SetNextRoll(int pinsKnocked)
         {
+            //Check for correct input
             if (pinsKnocked < 0 || 10 < pinsKnocked) {
                 throw new ArgumentException("You can only knock down 0-10 pins.");
             }
+
             currentFrame.SetRoll(currentRollNum, pinsKnocked);
             
-            UpdateScore();
+            UpdateScoreCheck();
                         
-            //Update frame and roll and set special-flags
+            //Update current frame and current roll and set special-flags
             if (currentRollNum==1) 
             {
                 if (currentFrame.IsLastFrame())
@@ -83,17 +82,17 @@ namespace BowlingTracker
             }
         }
 
-        private void UpdateScore()
+        //Checks if scores should be updated, and calls update if needed.
+        private void UpdateScoreCheck()
         {
             string special = currentFrame.GetSpecial();
                         
-            //Check if should update:
             //1st frame
             if (currentFrameNum == 1)
             {
                 if (currentRollNum == 2 && special=="no") 
                 {
-                    UpdateFrameScore(currentFrameNum);//, special);
+                    UpdateFrameScore(currentFrameNum);
                 }
             }
             //2-9th frames
@@ -104,12 +103,12 @@ namespace BowlingTracker
                 {
                     if (carrySpare) 
                     {
-                        UpdateFrameScore(currentFrameNum-1);//, "spare");
+                        UpdateFrameScore(currentFrameNum-1);
                         carrySpare = false;
                     }
                     else if (carryStrike == 2)
                     {
-                        UpdateFrameScore(currentFrameNum-2);//, "strike");
+                        UpdateFrameScore(currentFrameNum-2);
                         carryStrike = 1;
                     }
                 }
@@ -118,12 +117,12 @@ namespace BowlingTracker
                 {
                     if (carryStrike == 1) 
                     {
-                        UpdateFrameScore(currentFrameNum-1);//, "strike");
+                        UpdateFrameScore(currentFrameNum-1);
                         carryStrike = 0;
                     }
                     if (special == "no") 
                     {
-                        UpdateFrameScore(currentFrameNum);//, "no");
+                        UpdateFrameScore(currentFrameNum);
                     }
                 }
             }
@@ -134,12 +133,12 @@ namespace BowlingTracker
                 {
                     if (carryStrike == 2)
                     {
-                        UpdateFrameScore(currentFrameNum-2);//, "strike");
+                        UpdateFrameScore(currentFrameNum-2);
                         carryStrike = 1;
                     }
                     if (carrySpare) 
                     {
-                        UpdateFrameScore(currentFrameNum-1);//, "spare");
+                        UpdateFrameScore(currentFrameNum-1);
                         carrySpare = false;
                     }
                 }
@@ -147,7 +146,7 @@ namespace BowlingTracker
                 {
                     if (carryStrike > 0) 
                     {
-                        UpdateFrameScore(currentFrameNum-1);//, "strike");
+                        UpdateFrameScore(currentFrameNum-1);
                         carryStrike--;
                     }
                     if (special == "no") {
@@ -161,10 +160,10 @@ namespace BowlingTracker
             }
         }
 
-        //Will only be called, when a frame score is certain.
+        //Will only be called, when a frame score is certain to be updated.
         private void UpdateFrameScore(int frameNum)
         {
-            //Add score from previous frames
+            //Add score from previous frames if not first frame.
             scoreCumulative[frameNum-1] += frameNum == 1 ? 0 : scoreCumulative[frameNum-2];
             
             Frame frame = frames[frameNum-1];
@@ -195,7 +194,7 @@ namespace BowlingTracker
                         int firstRollNextFrame = nextFrame.GetRoll(1);
                         bool isNextFrameStrike = nextFrame.GetSpecial()=="strike";
 
-                        //Special case for second last frame (9th) and if no strike next frame
+                        //Special case for second last frame (9th) and if no strike in next frame
                         if (nextFrame.IsLastFrame() || !isNextFrameStrike) 
                         {
                             scoreCumulative[frameNum-1] += firstRoll + firstRollNextFrame + nextFrame.GetRoll(2);
@@ -206,7 +205,7 @@ namespace BowlingTracker
                         }
                         break;
                     default: 
-                        break;
+                        throw new Exception("Unknown \'special\'.");
                 }
             }
         }
@@ -238,7 +237,7 @@ namespace BowlingTracker
                 {
                     return true;
                 }
-                else if (roll1 > 0 && roll2 > 0 && roll1+roll2< 10)
+                else if (roll1 >= 0 && roll2 >= 0 && roll1+roll2< 10)
                 {
                     return true;
                 }
@@ -246,20 +245,35 @@ namespace BowlingTracker
             return false;
         }
 
-        public void ResetGame()
+        public int GetLatestScore()
         {
-            frames = new Frame[10];
-            scoreCumulative = new int[10];
+            return scoreCumulative.Max();
         }
 
-        internal int GetLatestScore()
+        internal void PrintScoreBoard()
         {
-            // int latestScore = 0;
-            // foreach (int i in scoreCumulative)
-            // {
-            //     latestScore += i;
-            // }
-            return scoreCumulative.Max();
+            string horizontalLine = "";
+            string frameNumbers = "";
+            string rollScores = "";
+            string totalScore = "";
+            for (int i=0; i<currentFrameNum; i++) {
+                horizontalLine += "------------";
+                frameNumbers += "| Frame: " + currentFrameNum + " ";
+                bool shouldGetRoll1 = frames[i].GetRoll(1)!=-1;
+                bool shouldGetRoll2 = frames[i].GetRoll(2)!=-1;
+                string roll1 = shouldGetRoll1 ? frames[i].GetRoll(1).ToString() : " ";
+                string roll2 = shouldGetRoll2 ? frames[i].GetRoll(2).ToString() : " ";
+                rollScores += "| " + roll1 + " | " + roll2 + " ";
+                string score = currentRollNum !=1 ? scoreCumulative[i].ToString() : " ";
+                totalScore += "| " + score + "   ";
+            }
+            Console.WriteLine(horizontalLine);
+            Console.WriteLine(frameNumbers);
+            Console.WriteLine(horizontalLine);
+            Console.WriteLine(rollScores);
+            Console.WriteLine(horizontalLine);
+            Console.WriteLine(totalScore);
+            Console.WriteLine(horizontalLine);
         }
     }
 }

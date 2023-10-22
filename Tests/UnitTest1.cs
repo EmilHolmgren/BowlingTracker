@@ -193,21 +193,28 @@ public class UnitTest1
         Assert.False(lastFrame);
     }
     [Fact]
-    public void FrameMethods()
+    public void SetRollShouldSetCorrectly()
     {
-        var frame1 = new Frame(false);
+        var frame1 = new Frame(true);
         frame1.SetRoll(1,4);
         frame1.SetRoll(2,5);
         frame1.SetRoll(3,0);
+
         var roll1 = frame1.GetRoll(1);
-        Assert.Equal(4,roll1);
         var roll2 = frame1.GetRoll(2);
-        Assert.Equal(5,roll2);
         var roll3 = frame1.GetRoll(3);
+
+        Assert.Equal(4,roll1);
+        Assert.Equal(5,roll2);
         Assert.Equal(0,roll3);
     }
 
-    /*Need test
-        - only allow a max knocked down pins of 10 per frame (30 in last frame).
-    */
+    [Fact]
+    public void GetRollShouldOnlyAcceptValidInputs()
+    {
+        var frame1 = new Frame(false);
+        
+        Assert.Throws<ArgumentException>( () => frame1.GetRoll(4));
+
+    }
 }

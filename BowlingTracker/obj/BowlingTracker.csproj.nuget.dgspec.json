@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Dokumenter\\DanskeCommodities\\BowlingScoring\\BowlingTracker\\BowlingTracker.csproj": {}
+    "D:\\Dokumenter\\DanskeCommodities\\BowlingScoring\\BowlingTracker\\BowlingTracker.csproj": {}
   },
   "projects": {
-    "d:\\Dokumenter\\DanskeCommodities\\BowlingScoring\\BowlingTracker\\BowlingTracker.csproj": {
+    "D:\\Dokumenter\\DanskeCommodities\\BowlingScoring\\BowlingTracker\\BowlingTracker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Dokumenter\\DanskeCommodities\\BowlingScoring\\BowlingTracker\\BowlingTracker.csproj",
+        "projectUniqueName": "D:\\Dokumenter\\DanskeCommodities\\BowlingScoring\\BowlingTracker\\BowlingTracker.csproj",
         "projectName": "BowlingTracker",
-        "projectPath": "d:\\Dokumenter\\DanskeCommodities\\BowlingScoring\\BowlingTracker\\BowlingTracker.csproj",
+        "projectPath": "D:\\Dokumenter\\DanskeCommodities\\BowlingScoring\\BowlingTracker\\BowlingTracker.csproj",
         "packagesPath": "C:\\Users\\super\\.nuget\\packages\\",
-        "outputPath": "d:\\Dokumenter\\DanskeCommodities\\BowlingScoring\\BowlingTracker\\obj\\",
+        "outputPath": "D:\\Dokumenter\\DanskeCommodities\\BowlingScoring\\BowlingTracker\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\super\\AppData\\Roaming\\NuGet\\NuGet.Config"
