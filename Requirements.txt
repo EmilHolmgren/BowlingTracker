@@ -1,6 +1,6 @@
 Bowling Scoring System
 
-Requirements
+Initial requirements list:
 
 Must haves:
 - input number of pins for each roll of the bowling ball
@@ -18,6 +18,3 @@ Nice to haves:
 Ideas:
 - Strategy patterns: Scoring
 - Possibility to create shorter/longer game
-
-How to run:
-dotnet run Run.cs

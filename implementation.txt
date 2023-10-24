@@ -1,6 +1,6 @@
 Bowling scoring system
 
-Implementation
+First implementation sketch:
 
 - class/interface: 
 	- Frame

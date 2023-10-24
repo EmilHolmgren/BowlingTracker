@@ -1,6 +1,4 @@
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using BowlingTracker;
-using System.Data;
 
 namespace Tests;
 
@@ -11,9 +9,8 @@ public class UnitTest1
     public void GameInit()
     {
         var game = new Game();
-        Assert.Equal(0,game.GetCurrentScore(1));
-        Assert.Equal(1,game.GetCurrentFrameNum());
-        Assert.Equal(1,game.GetCurrentRoll());
+        Assert.Equal(0, game.GetCurrentScore());
+        Assert.Equal(1, game.GetCurrentFrameNum());
         Assert.False(game.DidGameEnd());
     }
 
@@ -25,18 +22,16 @@ public class UnitTest1
     }
 
     [Fact]
-    public void SetNextRollShouldUpdateScoreFrameAndRoll()
+    public void SetNextRollShouldUpdateScoreAndFrame()
     {
         var game = new Game();
 
         game.SetNextRoll(4);
-        Assert.Equal(0, game.GetCurrentScore(1));
-        Assert.Equal(2, game.GetCurrentRoll());
+        Assert.Equal(0, game.GetCurrentScore());
         Assert.Equal(1, game.GetCurrentFrameNum());
 
         game.SetNextRoll(3);
-        Assert.Equal(7, game.GetCurrentScore(1));
-        Assert.Equal(1, game.GetCurrentRoll());
+        Assert.Equal(7, game.GetCurrentScore());
         Assert.Equal(2, game.GetCurrentFrameNum());
     }
 
@@ -47,22 +42,21 @@ public class UnitTest1
         
         //Strike
         game.SetNextRoll(10);
-        Assert.Equal(0, game.GetCurrentScore(1));
+        Assert.Equal(0, game.GetCurrentScore());
         Assert.Equal(2, game.GetCurrentFrameNum());
         
         game.SetNextRoll(4);
         game.SetNextRoll(2);
-        Assert.Equal(16, game.GetCurrentScore(1));
-        Assert.Equal(22, game.GetCurrentScore(2));
+        Assert.Equal(22, game.GetCurrentScore());
         Assert.Equal(3, game.GetCurrentFrameNum());
 
         game.SetNextRoll(10);
         game.SetNextRoll(10);
         game.SetNextRoll(9);
-        game.SetNextRoll(0);
+        Assert.Equal(51, game.GetCurrentScore());
 
-        Assert.Equal(51, game.GetCurrentScore(3));
-        Assert.Equal(70, game.GetCurrentScore(4));
+        game.SetNextRoll(0);
+        Assert.Equal(79, game.GetCurrentScore());
     }
 
     [Fact]
@@ -73,48 +67,47 @@ public class UnitTest1
         //Spare
         game.SetNextRoll(8);
         game.SetNextRoll(2);
-        Assert.Equal(0, game.GetCurrentScore(1));
+        Assert.Equal(0, game.GetCurrentScore());
         
         game.SetNextRoll(7);
-        Assert.Equal(17, game.GetCurrentScore(1));
+        Assert.Equal(17, game.GetCurrentScore());
         
         game.SetNextRoll(3);
+
         game.SetNextRoll(4);
-        Assert.Equal(31, game.GetCurrentScore(2));
+        Assert.Equal(31, game.GetCurrentScore());
     }
 
     [Fact]
-    public void SpareInSecondLastGame()
+    public void SpareInSecondLastFrame()
     {
         var game = new Game();
 
-        for (int i=0; i<16; i++)
+        for (int i = 0; i < 16; i++)
         {
             game.SetNextRoll(0);
         }
         game.SetNextRoll(2);
         game.SetNextRoll(8);
 
-        game.SetNextRoll(10);
-        game.SetNextRoll(10);
-        game.SetNextRoll(10);
+        game.SetNextRoll(4);
 
-        Assert.Equal(20, game.GetCurrentScore(9));
-        Assert.Equal(50, game.GetCurrentScore(10));
+        Assert.Equal(14, game.GetCurrentScore());
     }
 
     [Fact]
     public void SpareInLastFrame()
     {
         var game = new Game();
-        for (int i=0; i<9; i++)
+
+        for (int i = 0; i < 18; i++)
         {
-            game.SetNextRoll(10);
+            game.SetNextRoll(0);
         }
         game.SetNextRoll(2);
         game.SetNextRoll(8);
         game.SetNextRoll(3);
-        Assert.Equal(265, game.GetCurrentScore(10));
+        Assert.Equal(13, game.GetCurrentScore());
         Assert.True(game.DidGameEnd());
     }
 
@@ -122,24 +115,26 @@ public class UnitTest1
     public void LastFrameOnlyTwoRolls()
     {
         var game = new Game();
-        for (int i=0; i<9; i++)
+        for (int i = 0; i < 18; i++)
         {
-            game.SetNextRoll(10);
+            game.SetNextRoll(0);
         }
         game.SetNextRoll(4);
         game.SetNextRoll(2);
-        Assert.Equal(256, game.GetCurrentScore(10));
+        Assert.Equal(6, game.GetCurrentScore());
+        Assert.True(game.DidGameEnd());
     }
 
     [Fact]
     public void PerfectGame()
     {
         var game = new Game();
-        for (int i=0; i<12; i++)
+
+        for (int i = 0; i < 12; i++)
         {
             game.SetNextRoll(10);
         }
-        Assert.Equal(300, game.GetCurrentScore(10));
+        Assert.Equal(300, game.GetCurrentScore());
         Assert.True(game.DidGameEnd());
     }
 
@@ -147,11 +142,11 @@ public class UnitTest1
     public void AllZeroGame()
     {
         var game = new Game();
-        for (int i=0; i<20; i++)
+        for (int i = 0; i < 20; i++)
         {
             game.SetNextRoll(0);
         }
-        Assert.Equal(0, game.GetCurrentScore(10));
+        Assert.Equal(0, game.GetCurrentScore());
         Assert.True(game.DidGameEnd());
     }
 
@@ -160,17 +155,19 @@ public class UnitTest1
     {
         //Only 9 frames played
         var game = new Game();
-        for (int i=0; i<18; i++)
+
+        for (int i = 0; i < 18; i++)
         {
-            game.SetNextRoll(4);
+            game.SetNextRoll(0);
         }
         Assert.False(game.DidGameEnd());
         
         //Spare in last frame
         game = new Game();
-        for (int i=0; i<9; i++)
+
+        for (int i = 0; i < 18; i++)
         {
-            game.SetNextRoll(10);
+            game.SetNextRoll(0);
         }
         game.SetNextRoll(2);
         game.SetNextRoll(8);
@@ -180,21 +177,11 @@ public class UnitTest1
     [Fact]
     public void GameShouldHaveEnded()
     {
-        //Last frame only 2 rolls
-        var game = new Game();    
-        for (int i = 0; i < 9; i++)
-        {
-            game.SetNextRoll(10);
-        }
-        game.SetNextRoll(2);
-        game.SetNextRoll(7);
-        Assert.True(game.DidGameEnd());
-
         //Last frame spare
-        game = new Game();
-        for (int i=0; i<9; i++)
+        var game = new Game();
+        for (int i = 0; i < 18; i++)
         {
-            game.SetNextRoll(10);
+            game.SetNextRoll(0);
         }
         game.SetNextRoll(3);
         game.SetNextRoll(7);
@@ -203,9 +190,9 @@ public class UnitTest1
 
         //Last frame strike + zeros
         game = new Game();
-        for (int i=0; i<9; i++)
+        for (int i = 0; i < 18; i++)
         {
-            game.SetNextRoll(10);
+            game.SetNextRoll(0);
         }
         game.SetNextRoll(10);
         game.SetNextRoll(0);
@@ -219,37 +206,40 @@ public class UnitTest1
     {
         var frame1 = new Frame(false);
         var roll1 = frame1.GetRoll(1);
-        Assert.Equal(-1,roll1);
+        Assert.Equal(0,roll1);
+
         var roll2 = frame1.GetRoll(2);
-        Assert.Equal(-1,roll2);
+        Assert.Equal(0,roll2);
+
         var roll3 = frame1.GetRoll(3);
-        Assert.Equal(-1,roll3);
+        Assert.Equal(0,roll3);
+
         var lastFrame = frame1.IsLastFrame();
         Assert.False(lastFrame);
-    }
-    [Fact]
-    public void SetRollShouldSetCorrectly()
-    {
-        var frame1 = new Frame(true);
-        frame1.SetRoll(1,4);
-        frame1.SetRoll(2,5);
-        frame1.SetRoll(3,0);
+        Assert.True(frame1.GetStatus() == Frame.Status.NONE);
 
-        var roll1 = frame1.GetRoll(1);
-        var roll2 = frame1.GetRoll(2);
-        var roll3 = frame1.GetRoll(3);
-
-        Assert.Equal(4,roll1);
-        Assert.Equal(5,roll2);
-        Assert.Equal(0,roll3);
+        var isCompleted = frame1.HasBeenCompleted();
+        Assert.False(isCompleted);
     }
 
     [Fact]
     public void GetRollShouldOnlyAcceptValidInputs()
     {
         var frame1 = new Frame(false);
-        
         Assert.Throws<ArgumentException>( () => frame1.GetRoll(4));
+    }
 
+    [Fact]
+    public void SetRollCorrectlyNormalFrame()
+    {
+        var frame1 = new Frame(true);
+        frame1.SetRoll(4);
+        frame1.SetRoll(5);
+
+        var roll1 = frame1.GetRoll(1);
+        var roll2 = frame1.GetRoll(2);
+
+        Assert.Equal(4,roll1);
+        Assert.Equal(5,roll2);
     }
 }

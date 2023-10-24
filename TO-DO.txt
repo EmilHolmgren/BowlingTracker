@@ -1,9 +1,0 @@
-Bowling scoring system
-
-Plan:
-- Create list of requirements
-- Create github project
-- think of and draw an overall layout/structure
-	- classes/fields/arrays etc.
-- implement project structure
-	- simple tests/basic case
