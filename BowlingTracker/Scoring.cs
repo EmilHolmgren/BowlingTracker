@@ -1,21 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace BowlingTracker
 {
     public class Scoring
     {
         private readonly Frame[] frames;
-
         public Scoring(Frame[] frames)
         {
             this.frames = frames;
         }
 
-        internal int GetCurrentScore()
+        public int GetCurrentScore()
         {            
             List<Frame> completedFrames = GetCompletedFrames();
             Queue<int> allRolls = GetAllRollsConsecutive();
@@ -33,7 +26,8 @@ namespace BowlingTracker
         {
             int frameScore = 0;
             
-            if (isLastFrame) {
+            if (isLastFrame) 
+            {
                 frameScore += allRolls.Dequeue() + allRolls.Dequeue();
                 allRolls.TryDequeue(out int bonusRoll3);
                 return frameScore += bonusRoll3;
@@ -45,25 +39,24 @@ namespace BowlingTracker
                     frameScore += allRolls.Dequeue() + allRolls.Dequeue();
                     break;
                 case Frame.Status.SPARE:
-                    if (allRolls.Count < 3)
+                    if (allRolls.Count >= 3)
                     {
-                        break;
-                    }
-                    int firstRoll = allRolls.Dequeue();
-                    int secondRoll = allRolls.Dequeue();
-                    allRolls.TryPeek(out int bonusValue);
+                        int firstRoll = allRolls.Dequeue();
+                        int secondRoll = allRolls.Dequeue();
+                        allRolls.TryPeek(out int bonusValue);
 
-                    frameScore += firstRoll + secondRoll + bonusValue;
+                        frameScore += firstRoll + secondRoll + bonusValue;
+                    }
                     break;
                 case Frame.Status.STRIKE:
-                    if (allRolls.Count < 3) {
-                    break;
-                    }
-                    int strikScore = allRolls.Dequeue();
-                    int bonusValue1 = allRolls.ElementAt(0);
-                    int bonusValue2 = allRolls.ElementAt(1);
+                    if (allRolls.Count >= 3) 
+                    {
+                        int strikeScore = allRolls.Dequeue();
+                        int bonusValue1 = allRolls.ElementAt(0);
+                        int bonusValue2 = allRolls.ElementAt(1);
 
-                    frameScore += strikScore + bonusValue1 + bonusValue2;
+                        frameScore += strikeScore + bonusValue1 + bonusValue2;
+                    }
                     break;
             }
             return frameScore;

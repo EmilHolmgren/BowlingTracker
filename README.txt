@@ -1,8 +1,8 @@
 To run BowlingTracker go to the directory where App.cs is located.
 
-type: dotnet run
+Type: dotnet run
 
-Follow instruction in console to complete scoring your bowling game.
+Follow instructions in console to complete scoring your bowling game.
 
 To run xUnit tests, go to the directory .\Tests\.
 
@@ -24,8 +24,5 @@ The 'Scoring' class is a specific scoring strategy that has the responsibility t
 	- compute the current score of the game.
 	- compute the score based on official rules.
 
-The length of a game could be setup as a parameter when creating a new game if variations are desired.
-The 'Game' class could implement a print strategy for a better UI.
-
-Not all exceptions are handled. 
-Would generally recommend inputting valid integers. 
+The length of a game is fixed at 10, but could be setup as a parameter when creating a new game if variations were desired.
+Console only UI. The 'Game' class could be changed to implement a print-strategy/UI for a better UI.

@@ -6,13 +6,13 @@ namespace BowlingTracker
         NONE, SPARE, STRIKE
     }
 
+        private readonly bool isLastFrame;
         private int roll1;
         private int roll2;
         private int roll3;
         private int rollsDone;
         private Status status;
         private bool isCompleted;
-        private readonly bool isLastFrame;
 
         public Frame(bool isLastFrame)
         {
@@ -34,34 +34,36 @@ namespace BowlingTracker
         {
             return isLastFrame;
         }
+
         public bool IsSpecial()
         {
             return status == Status.SPARE || status == Status.STRIKE;
         }
+
         public void SetRoll(int rollValue)
         {
-            rollsDone++;
-
-            if (rollsDone == 1)
+            if (rollsDone == 0)
             {
                 ValidateRoll(rollValue, 0, 10);
                 roll1 = rollValue;
                 CheckStrike();
-                CheckFrameComplete();
             }
             else
             {
                 ValidateRoll(rollValue, 0, 10 - roll1);
                 roll2 = rollValue;
                 CheckSpare();
-                CheckFrameComplete();
-            }            
+            }
+
+            rollsDone++;
+            CheckFrameComplete();
         }
 
         public int GetRollsDone()
         {
             return rollsDone;
         }
+
         public void SetRollLastFrame(int rollValue)
         {
             if (rollsDone == 0)
@@ -137,7 +139,6 @@ namespace BowlingTracker
         private void CheckFrameComplete()
         {
             if (!isLastFrame) {
-                
                 isCompleted = IsSpecial() || rollsDone == 2;
             }
             else
